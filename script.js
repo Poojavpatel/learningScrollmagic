@@ -85,13 +85,48 @@ $(document).ready(function(){
 	})
 	.addTo(controller);
 
+	/* PARALLAX SCENE */
+
+	// var parallaxScene = new ScrollMagic.Scene({
+	// 	triggerElement:'.bcg-parallax',
+	// 	triggerHook:1,
+	// 	duration:'105%',
+	// })
+	// .setTween(TweenMax.from('.bcg', 1, {y:'-50%' , ease:Power0.easeNone} ))
+	// .addIndicators({
+	// 	name:'parallax',
+	// 	colorTrigger:'green',
+	// 	colorStart:'green',
+	// 	colorEnd:'green'
+	// })
+	// .addTo(controller);
+
+	/* FADE IN TEXT ON PARALLAX SCENE A LITTLE BIT AFTER IT COMES ON */
+
+	// we will need to create a new timeline
+	var parallaxTl = new TimelineMax();
+	//adding tweens to the timeline
+	parallaxTl
+		.from('.content-wrapper', 0.9 ,{ autoAlpha:0 , ease:Power0.easeNone} ,0.9)/* delay of 0.3 */
+		.from('.bcg', 2, {y:'-50%' , ease:Power0.easeNone} ,0)/* should start at 0 along with content wrapper and not after it*/
+		;
+
+	var parallaxScene = new ScrollMagic.Scene({
+	 	triggerElement:'.bcg-parallax',
+	 	triggerHook:1,
+	 	duration:'100%',
+	})
+	 .setTween(parallaxTl)
+	 .addIndicators({
+	 	name:'parallax',
+	 	colorTrigger:'green',
+	 	colorStart:'green',
+	 	colorEnd:'green'
+	})
+	 .addTo(controller);
 
 
-
-
-
-
-
+	
 
 
 
